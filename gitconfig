@@ -1,6 +1,6 @@
-[user]
-	email = xsawyerx@cpan.org
-	name  = Sawyer X
+#[user]
+#    email = xsawyerx@cpan.org
+#    name  = Sawyer X
 
 [alias]
     st  = status
