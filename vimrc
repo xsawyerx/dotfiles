@@ -10,6 +10,10 @@ set sw=4
 au BufNewFile,BufRead *.tt set filetype=html
 au BufNewFile,BufRead *.tt2 set filetype=html
 
-" i like to start with p3rl first
 :ab p3rl #!/usr/bin/perluse strict;use warnings;
+
+" experimental, darkred? FFD9D9?
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" original: /\%81v.*/
+match OverLength /\%81v.\+/
 
