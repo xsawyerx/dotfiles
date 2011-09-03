@@ -48,18 +48,6 @@ function phplog() {
     perl -nle'$_=~ s/\\n/\n/g; $_=~ s/\\t/\t/g; print $_'
 }
 
-alias vi='vim'
-alias ll='ls -l --color=always'
-alias sshr='ssh -l root'
-alias scpresume='rsync --partial --progress -ae ssh'
-
-# these are from Yuval Kogman
-alias ts="prove --state=slow,save -j3 -r"
-alias tf="prove --state=failed,save -v -r"
-
-# alias realias='$EDITOR ~/.aliases; source ~/.aliases'
-alias git-archive-here='git archive --format=tar HEAD | gzip'
-alias pod=perldoc
 complete -C perldoc-complete -o nospace -o default pod
 
 EDITOR='vim'
