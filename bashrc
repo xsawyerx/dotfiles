@@ -53,4 +53,5 @@ complete -C perldoc-complete -o nospace -o default pod
 EDITOR='vim'
 
 . ~/.git_term
+. ~/.aliases
 
