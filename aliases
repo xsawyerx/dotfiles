@@ -7,6 +7,8 @@ alias gf='git flow'
 alias realias='$EDITOR ~/.aliases; source ~/.aliases'
 alias git-archive-here='git archive --format=tar HEAD | gzip'
 alias pod=perldoc
+alias feature='git flow feature'
+alias release='git flow release'
 
 # these are from Yuval Kogman
 alias ts="prove --state=slow,save -j3 -r"
