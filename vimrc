@@ -17,3 +17,6 @@ highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 " original: /\%81v.*/
 match OverLength /\%81v.\+/
 
+" Makefiles work with tabs and not spaces
+autocmd FileType make setlocal noexpandtab
+
