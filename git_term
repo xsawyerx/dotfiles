@@ -2,7 +2,7 @@
 #
 # PS1 magic
 #
-# Mostly copied from YUVAL KOGMAN version, added my own __git_ps1 stuff
+# Mostly copied from YUVAL KOGMAN's version, added my own __git_ps1 stuff
 # Original: http://gist.github.com/621452
 #
 # See video demo of this at http://vimeo.com/15789794
@@ -54,17 +54,17 @@ _update_prompt () {
   local u;
   local p;
   if [ "$UID" = "0" ]; then
-u="$e_bred\u$e_normal";
+    u="$e_bred\u$e_normal";
     p="$e_bred#$e_normal";
   else
-u="$e_purple\u$e_normal";
+    u="$e_purple\u$e_normal";
     p="\$";
   fi
 
   ## Color git status if any
   branch=`__git_ps1 "(%s)"`
   if [ -n "$branch" ] ; then
-if [ -z "$_dumb_prompt" ]; then
+    if [ -z "$_dumb_prompt" ]; then
       ## Assumes that untracked files are always listed after modified ones
       ## True for all git versions I could find
       git status --porcelain | perl -ne 'exit(1) if /^ /; exit(2) if /^[?]/'
@@ -74,12 +74,12 @@ if [ -z "$_dumb_prompt" ]; then
         "2" ) branch=" $e_byellow$branch$e_normal" ;;
         "130" ) branch=" $e_white$branch$e_normal" ; _dumb_prompt=1 ;;
       esac
-else
-branch=" $e_white$branch$e_normal"
+    else
+       branch=" $e_white$branch$e_normal"
     fi
-fi
-full_prompt="$ex$_prompt $u$branch $p";
-export PS1="\[\e]0;\u@\h:\w\\a\]$full_prompt ";
+  fi
+  full_prompt="$ex$_prompt $u$branch $p";
+  export PS1="\[\e]0;\u@\h:\w\\a\]$full_prompt ";
 }
 
 dumb_prompt () {
@@ -91,6 +91,6 @@ smart_prompt () {
 }
 
 if [ -n "$PS1" ] ; then
-PROMPT_COMMAND='_update_prompt'
+  PROMPT_COMMAND='_update_prompt'
   export PROMPT_COMMAND
 fi
