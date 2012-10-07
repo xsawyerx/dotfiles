@@ -14,4 +14,14 @@ alias release='git flow release'
 alias ts="prove --state=slow,save -j3 -r"
 alias tf="prove --state=failed,save -v -r"
 
+alias ps?='ps -ef | grep'
+alias s='sudo'
+
+# git
+alias gs='git status'
+alias gd='git df'
+alias go='git co'
+alias gb='git br'
+alias gc='git ci'
+
 
