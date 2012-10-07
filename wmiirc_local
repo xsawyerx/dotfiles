@@ -1,0 +1,60 @@
+MODKEY=Mod4
+
+# Tagging Rules
+wmiir write /tagrules <<EOF
+  /Mplayer|VLC/ floating=on
+  /MPlayer|VLC/ -> ~
+  /Gnome-terminal/ -> sel
+  /Firefox|Chrome/ -> sel
+EOF
+
+# Reference:
+#wmiir write /tagrules <<!
+#    # Apps with system tray icons like to their main windows
+#    # Give them permission.
+#    /^Pidgin:/ allow=+activate
+#
+#    # MPlayer and VLC don't float by default, but should.
+#    /MPlayer|VLC/ floating=on
+#
+#    # ROX puts all of its windows in the same group, so they open
+#    # with the same tags. Disable grouping for ROX Filer.
+#    /^ROX-Filer:/ group=0
+#    #
+#    #
+#    /MPlayer.*/ -> ~+video+code+social+web
+#    /VLC.*|vlc.*/ -> ~+video+code+social+web
+#    /Boxee.*|boxee.*/ -> ~+video+code+social+web
+#    /huludesktop|huludesktop.*/ -> ~+video+code+social+web
+#    /firefox.*|Firefox.*|Namoroka.*|Mozilla.*/ -> +web
+#    /Thunderbird.*|Muttator.*/ -> +web
+#    /dwb.*|DWB.*/ -> +web
+#    /vimprobable2.*|uzbl.*/ -> +web
+#    /gedit|leafpad/ -> +code
+#    /Gimp.*|Darktable/ -> ~+art
+#    /xcalc/ -> ~
+#    /CP shell/ -> +code
+#    /SU shell/ -> +admin
+#    /HS shell/ -> +social
+#    /VE shell/ -> +video+code+social+web
+#    /KDX.*/ -> ~+social
+#    /nautilus|thunar|FM shell/ -> +file
+#    /LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
+#    /armagetronad/ -> +game
+#    /.*/ -> sel
+#    /.*/ -> 1
+#!
+
+
+
+# Status Bar Info
+status() {
+    BAT=`acpi -b`;
+    LEFT=`echo $BAT | cut -d ',' -f 2`;
+    #TEMP=`acpi -t -B -c | cut -d ',' -f 2 | cut -d "." -f 1`;
+    TEMP=`acpi -t  | awk '{print $4}'`;
+    LOAD=$(uptime | sed 's/.*://; s/,//g');
+    DATE=`date +"%d/%m/%y %R:%S"`;
+    echo -n T: $TEMP '|' B: $LEFT '|' $LOAD '|' $DATE;
+}
+
