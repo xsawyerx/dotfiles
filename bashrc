@@ -48,7 +48,33 @@ function phplog() {
     perl -nle'$_=~ s/\\n/\n/g; $_=~ s/\\t/\t/g; print $_'
 }
 
+function calc() {
+    awk "BEGIN{ print $* }"
+}
+
 complete -C perldoc-complete -o nospace -o default pod
+
+function maxmem() {
+    TR=`free|grep Mem:|awk '{print $2}'`
+    /bin/ps axo rss,comm,pid|awk -v tr=$TR '{proc_list[$2]+=$1;} END {for (proc in proc_list) {proc_pct=(proc_list[proc]/tr)*100; printf("%d\t%-16s\t%0.2f%\n",proc_list[proc],proc,proc_pct);}}'|sort -n |tail -n 20|tac
+}
+
+function conns() {
+    netstat -an | grep ESTABLISHED | awk '{print $5}' | awk -F: '{print $1}' | sort | uniq -c | awk '{ printf("%s\t%s\t",$2,$1); for (i = 0; i < $1; i++) {printf("*")}; print ""}' | sort -nk 2
+}
+
+function strace_read() {
+    strace -ff -e write=1,2 -s 1024 -p $1  2>&1 | grep "^ |" | cut -c11-60 | sed -e 's/ //g' | xxd -r -p
+}
+
+function screencast() {
+    ffmpeg -f alsa -ac 2 -i hw:0,0 -f x11grab -r 30 -s $(xwininfo -root | grep 'geometry' | awk '{print $2;}') -i :0.0 -acodec pcm_s16le -vcodec libx264 -vpre lossless_ultrafast -threads 0 -y $1
+}
+
+function tail_timestamp() { tail -f $* | while read line; do echo -n $(date -u -Ins); echo -e "\t$line"; done;  }
+
+function fstrace() { strace -ff -e trace=file $1 2>&1 | perl -ne 's/^[^"]+"(([^\\"]|\\[\\"nt])*)".*/$1/ && print'; }
+
 
 EDITOR='vim'
 
