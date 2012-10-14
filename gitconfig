@@ -12,3 +12,21 @@
     who  = shortlog -s --
     lp   = log --graph --pretty=format:'%Cred%h%Creset — %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --color
     undo = reset --hard
+
+# coloring!
+[color]
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
