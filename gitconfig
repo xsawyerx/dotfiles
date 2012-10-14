@@ -19,7 +19,7 @@
 
 # coloring!
 [color]
-    ui = auto
+    ui = true
 [color "branch"]
     current = yellow reverse
     local = yellow
