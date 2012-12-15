@@ -75,6 +75,7 @@ function tail_timestamp() { tail -f $* | while read line; do echo -n $(date -u -
 
 function fstrace() { strace -ff -e trace=file $1 2>&1 | perl -ne 's/^[^"]+"(([^\\"]|\\[\\"nt])*)".*/$1/ && print'; }
 
+function mkpass() { perl -MCrypt::XkcdPassword -E'say Crypt::XkcdPassword->new(words=>"EN")->make_password(4)'; }
 
 EDITOR='vim'
 
