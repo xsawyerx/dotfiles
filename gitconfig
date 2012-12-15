@@ -13,9 +13,10 @@
     who  = shortlog -s --
     lp   = log --graph --pretty=format:'%Cred%h%Creset — %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --color
     undo = reset --hard
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lol  = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    ls = ls-files
+    ls   = ls-files
+    git  = "!f() { git \"$@\"; }; f"
 
 # coloring!
 [color]
