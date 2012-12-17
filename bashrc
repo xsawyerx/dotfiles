@@ -44,6 +44,8 @@ function cp_p() {
          END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
 }
 
+function scp(){ if [[ "$@" =~ : ]];then /usr/bin/scp $@ ; else echo 'stupid colon...'; fi;} # Catch a common scp mistake.
+
 function phplog() {
     perl -nle'$_=~ s/\\n/\n/g; $_=~ s/\\t/\t/g; print $_'
 }

@@ -24,4 +24,3 @@ alias go='git co'
 alias gb='git br'
 alias gc='git ci'
 
-
