@@ -9,6 +9,7 @@ set sw=4
 " .tt and .tt2 are html files for me
 au BufNewFile,BufRead *.tt set filetype=html
 au BufNewFile,BufRead *.tt2 set filetype=html
+au BufNewFile,BufRead *.t set filetype=perl
 
 :ab p3rl #!/usr/bin/perluse strict;use warnings;
 
