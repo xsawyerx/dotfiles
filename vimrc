@@ -21,3 +21,10 @@ match OverLength /\%81v.\+/
 " Makefiles work with tabs and not spaces
 autocmd FileType make setlocal noexpandtab
 
+" remaps to handle tmux stuff
+" noremap [OD <C-Left>
+" noremap! [OD <C-Left>
+" noremap [OC <C-Right>
+" noremap! [OC <C-Right>
+
+" noremap [3~ gT
