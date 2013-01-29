@@ -1,5 +1,5 @@
 " I hate spaces in end of lines or tabs anywhere
-match Error /\t\|\s\+$/
+" match Error /\t\|\s\+$/
 
 " convert tabs to spaces, use 4 spaces (in tab jump and shift)
 set ts=4
