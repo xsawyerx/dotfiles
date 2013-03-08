@@ -8,6 +8,8 @@ wmiir write /tagrules <<EOF
   /Firefox|Chrome/ -> sel
 EOF
 
+WMII_TERM="urxvt"
+
 # Reference:
 #wmiir write /tagrules <<!
 #    # Apps with system tray icons like to their main windows
@@ -44,8 +46,6 @@ EOF
 #    /.*/ -> sel
 #    /.*/ -> 1
 #!
-
-
 
 # Status Bar Info
 status() {
