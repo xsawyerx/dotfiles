@@ -1,5 +1,5 @@
-# git-fetch-branch by David Golden (dagolden): https://gist.github.com/dagolden/5258726
 #!/usr/bin/env perl
+# git-fetch-branch by David Golden (dagolden): https://gist.github.com/dagolden/5258726
 use v5.10;
 use strict;
 use warnings;
