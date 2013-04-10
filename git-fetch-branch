@@ -1,0 +1,33 @@
+#!/usr/bin/env perl
+# git-fetch-branch by David Golden (dagolden): https://gist.github.com/dagolden/5258726
+use v5.10;
+use strict;
+use warnings;
+use Git::Wrapper;
+use Time::Piece;
+
+my ( $remote_repo, $remote_branch ) = @ARGV;
+
+die "Usage: $0 <remote_repo> <remote_branch>"
+  unless $remote_repo;
+
+$remote_branch //= 'master';
+
+my $local_branch;
+
+if ( $remote_repo =~ m{github\.com/([^/]+)/} ) {
+    $local_branch = "review/$1-$remote_branch";
+}
+else {
+    my $time = localtime->datetime;
+    $time =~ tr[:][-];
+    $local_branch = "review/$time";
+}
+
+my $git = Git::Wrapper->new(".");
+$git->fetch( $remote_repo, $remote_branch );
+$git->branch( $local_branch, 'FETCH_HEAD' );
+
+say "Fetched $remote_repo $remote_branch -> $local_branch";
+
+# vim: ts=4 sts=4 sw=4 et:
