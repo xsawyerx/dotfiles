@@ -17,6 +17,7 @@
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls   = ls-files
     git  = "!f() { git \"$@\"; }; f"
+    snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
 
 # coloring!
 [color]
@@ -35,3 +36,5 @@
     changed = green
     untracked = cyan
 
+[diff]
+    algorithm = patience

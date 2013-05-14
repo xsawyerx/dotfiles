@@ -18,6 +18,7 @@ alias ps?='ps -ef | grep'
 alias s='sudo'
 
 # git
+alias g='git'
 alias gs='git status'
 alias gd='git df'
 alias go='git co'
