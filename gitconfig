@@ -38,3 +38,6 @@
 
 [diff]
     algorithm = patience
+
+[core]
+    editor = vim
