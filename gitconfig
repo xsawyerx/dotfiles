@@ -41,3 +41,6 @@
 
 [core]
     editor = vim
+
+[url "ssh://git@github.com/"]
+    insteadOf = "gh:"
