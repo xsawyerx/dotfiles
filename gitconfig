@@ -44,3 +44,6 @@
 
 [url "ssh://git@github.com/"]
     insteadOf = "gh:"
+
+[push]
+	default = simple
