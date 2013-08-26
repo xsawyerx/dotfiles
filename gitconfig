@@ -18,6 +18,7 @@
     ls   = ls-files
     git  = "!f() { git \"$@\"; }; f"
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+    branches = for-each-ref --sort=-committerdate refs/heads/
 
 # coloring!
 [color]
