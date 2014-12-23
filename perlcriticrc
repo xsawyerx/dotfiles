@@ -1,0 +1,17 @@
+[TestingAndDebugging::RequireUseStrict]
+severity           = 5
+equivalent_modules = Dancer Dancer2 Moo Moose
+
+[TestingAndDebugging::RequireUseWarnings]
+severity           = 5
+equivalent_modules = Dancer Dancer2 Moo Moose
+
+# This is valid for my personal code but local
+# configuration might work for others' codebase
+#[ControlStructures::ProhibitPostfixControls]
+#allow = if unless
+
+# Example on how to disable something
+#[-NamingConventions::Capitalization]
+#[-ValuesAndExpressions::ProhibitMagicNumbers]
+
