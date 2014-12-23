@@ -26,3 +26,4 @@ alias gb='git br'
 alias gc='git ci'
 
 alias fixssh='export $(tmux show-environment | grep \^SSH_AUTH_SOCK=)'
+alias minicpanm='cpanm --mirror ~/code/personal/minicpan --mirror-only'
