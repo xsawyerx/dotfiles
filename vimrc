@@ -29,4 +29,6 @@ autocmd FileType make setlocal noexpandtab
 
 " noremap [3~ gT
 
-set background=light
+" set background=light
+set background=dark
+inoremap <F3> <c-o>:w<cr>
