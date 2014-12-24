@@ -6,8 +6,8 @@
 --perl-best-practices
 
 # overriding some stuff there
---vertical-tightness=1
---closing-token-indentation=0
+--vertical-tightness=0
+--vertical-tightness-closing=0
 # --outdent-long-quotes # ??
 
 # more stuff
@@ -15,5 +15,7 @@
 --check-syntax
 --perl-syntax-check-flags="-c"
 --preserve-line-endings
---nocuddled-else
+--cuddled-else
+--minimum-space-to-comment=1
+--nooutdent-long-comments
 # --ignore-old-breakpoints # ??

@@ -32,3 +32,4 @@ autocmd FileType make setlocal noexpandtab
 " set background=light
 set background=dark
 inoremap <F3> <c-o>:w<cr>
+execute pathogen#infect()

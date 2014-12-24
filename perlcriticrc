@@ -10,6 +10,7 @@ equivalent_modules = Dancer Dancer2 Moo Moose
 # configuration might work for others' codebase
 #[ControlStructures::ProhibitPostfixControls]
 #allow = if unless
+allow = for
 
 # Example on how to disable something
 #[-NamingConventions::Capitalization]
