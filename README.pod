@@ -1,0 +1,11 @@
+=encoding utf8
+
+=head1 ABOUT
+
+This is a repository containing the dot-files (= files that start with "."
+that are placed in the home-directory) of xsawyerx
+( L<https://github.com/xsawyerx> ).
+
+License is B<FILL IN>.
+
+=cut
