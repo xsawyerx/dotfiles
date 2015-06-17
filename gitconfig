@@ -19,6 +19,7 @@
     git  = "!f() { git \"$@\"; }; f"
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
     branches = for-each-ref --sort=-committerdate refs/heads/
+    stashed = stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
 
 # coloring!
 [color]
