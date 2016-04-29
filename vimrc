@@ -34,3 +34,6 @@ autocmd FileType make setlocal noexpandtab
 set background=dark
 inoremap <F3> <c-o>:w<cr>
 execute pathogen#infect()
+
+nnoremap <silent> tt :%!perltidy -q<Enter>
+vnoremap <silent> tt :!perltidy -q<Enter>
