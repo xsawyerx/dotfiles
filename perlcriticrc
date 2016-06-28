@@ -158,20 +158,6 @@ exclude_functions = print close sleep
 
 [InputOutput::RequireEncodingWithUTF8Layer]
 
-# These might not be installed, so let's make sure
-[Lax::ProhibitComplexMappings::LinesNotStatements]
-
-# Unnecessary, since there's "strict = 0" option in
-# Perl::Critic::Policy::ValuesAndExpressions::ProhibitLeadingZeros
-[-Lax::ProhibitLeadingZeros::ExceptChmod]
-[-Lax::ProhibitStringyEval::ExceptForRequire]
-
-# Not beginner-friendly
-[-Lax::RequireEndWithTrueConst]
-
-# Risky
-[-Lax::RequireExplicitPackage::ExceptForPragmata]
-
 [Miscellanea::ProhibitFormats]
 [Miscellanea::ProhibitTies]
 
@@ -402,10 +388,27 @@ allow = $@ $! $/
 
 [Variables::RequireNegativeIndices]
 
+# ---------------------
+# - Perl::Critic::Lax -
+# ---------------------
 
-# ------------------------------
-# - These are outside the Core -
-# ------------------------------
+# These might not be installed, so let's make sure
+[Lax::ProhibitComplexMappings::LinesNotStatements]
+
+# Unnecessary, since there's "strict = 0" option in
+# Perl::Critic::Policy::ValuesAndExpressions::ProhibitLeadingZeros
+[-Lax::ProhibitLeadingZeros::ExceptChmod]
+[-Lax::ProhibitStringyEval::ExceptForRequire]
+
+# Not beginner-friendly
+[-Lax::RequireEndWithTrueConst]
+
+# Risky
+[-Lax::RequireExplicitPackage::ExceptForPragmata]
+
+# ---------------------------
+# - Other external dists... -
+# ---------------------------
 
 # This is useful for projects that shouldn't die() or croak()
 # But shouldn't the exception possibly call die() or croak()?
@@ -414,7 +417,6 @@ allow = $@ $! $/
 
 # Not sure what this will pick up, but let's try...
 [ValuesAndExpressions::RequireNumericVersion]
-
 [ValuesAndExpressions::ConstantBeforeLt]
 [ValuesAndExpressions::ProhibitArrayAssignAref]
 [ValuesAndExpressions::ProhibitDuplicateHashKeys]
@@ -426,5 +428,4 @@ allow = $@ $! $/
 [ValuesAndExpressions::ProhibitNullStatements]
 [ValuesAndExpressions::ProhibitUnknownBackslash]
 [ValuesAndExpressions::UnexpandedSpecialLiteral]
-
 [ValuesAndExpressions::PreventSQLInjection]
