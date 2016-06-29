@@ -32,6 +32,7 @@ max_statements = 1
 [BuiltinFunctions::ProhibitStringyEval]
 
 [BuiltinFunctions::ProhibitStringySplit]
+severity = 3
 
 # Also: use Safe::Isa
 [BuiltinFunctions::ProhibitUniversalCan]
@@ -250,6 +251,8 @@ strict = 0
 [Subroutines::ProhibitManyArgs]
 [Subroutines::ProhibitNestedSubs]
 [Subroutines::ProhibitReturnSort]
+
+# Currently misidentifies signatures :(
 [Subroutines::ProhibitSubroutinePrototypes]
 
 # Allow Moose builders
@@ -258,7 +261,8 @@ private_name_regex = _(?!build)\w+
 
 [Subroutines::ProtectPrivateSubs]
 
-# Single line subroutines should be allowed
+# This does not like single line subroutines, and also:
+# http://stackoverflow.com/questions/2275317/why-does-perlcritic-dislike-using-shift-to-populate-subroutine-variables
 [Subroutines::RequireArgUnpacking]
 # The number of statements to allow without unpacking.
 short_subroutine_statements = 2
@@ -346,7 +350,10 @@ constant_creator_subroutines = constant
 
 [ValuesAndExpressions::ProhibitQuotesAsQuotelikeOperatorDelimiters]
 [ValuesAndExpressions::ProhibitSpecialLiteralHeredocTerminator]
-[ValuesAndExpressions::ProhibitVersionStrings]
+
+# "use v5.14" is more readable than "use 5.014"
+[-ValuesAndExpressions::ProhibitVersionStrings]
+
 [ValuesAndExpressions::RequireConstantVersion]
 [ValuesAndExpressions::RequireInterpolationOfMetachars]
 [ValuesAndExpressions::RequireNumberSeparators]
@@ -360,7 +367,7 @@ constant_creator_subroutines = constant
 [Variables::ProhibitPackageVars]
 # packages = Data::Dumper File::Find FindBin Log::Log4perl
 # Add the following list to the above list
-add_packages = Carp
+add_packages = Carp Test::Builder
 
 [Variables::ProhibitPerl4PackageNames]
 
@@ -405,6 +412,35 @@ allow = $@ $! $/
 
 # Risky
 [-Lax::RequireExplicitPackage::ExceptForPragmata]
+
+# ------------------------------
+# - Perl::Critic::StricterSubs -
+# ------------------------------
+
+[Subroutines::ProhibitCallsToUndeclaredSubs]
+
+# -----------------------
+# - Perl::Critic::Moose -
+# -----------------------
+
+[Moose::ProhibitDESTROYMethod]
+equivalent_modules = Moo Moo::Role
+
+[Moose::ProhibitMultipleWiths]
+equivalent_modules = Moo Moo::Role
+
+[Moose::ProhibitNewMethod]
+equivalent_modules = Moo Moo::Role
+
+[Moose::RequireCleanNamespace]
+equivalent_modules = Moo Moo::Role
+
+[Moose::ProhibitLazyBuild]
+equivalent_modules = Moo Moo::Role
+
+# We *shouldn't have make_immutable() in Moo
+# The opposite of this
+[Moose::RequireMakeImmutable]
 
 # ---------------------------
 # - Other external dists... -
