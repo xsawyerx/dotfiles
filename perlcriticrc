@@ -153,6 +153,7 @@ allow_in_main_unless_in_subroutine = 1
 [-InputOutput::RequireCheckedClose]
 
 [InputOutput::RequireCheckedOpen]
+
 [InputOutput::RequireCheckedSyscalls]
 functions = :builtins
 exclude_functions = print close sleep
@@ -171,9 +172,12 @@ exclude_functions = print close sleep
 [Modules::ProhibitAutomaticExportation]
 [Modules::ProhibitConditionalUseStatements]
 
-# Added: Readonly, base, File::Slurp
+# Added: Readonly, base, File::Slurp, common::sense, Class::Load,
+#        Any::Moose, Error, Getopt::Std, HTML::Template,
+#        IO::Socket::INET6, JSON, JSON::Any, List::MoreUtils, Mouse,
+#        Net::IRC, XML::Simple
 [Modules::ProhibitEvilModules]
-modules = Class::ISA {Found use of Class::ISA. This module is deprecated by the Perl 5 Porters.} Pod::Plainer {Found use of Pod::Plainer. This module is deprecated by the Perl 5 Porters.} Shell {Found use of Shell. This module is deprecated by the Perl 5 Porters.} Switch {Found use of Switch. This module is deprecated by the Perl 5 Porters.} Readonly {Found use of Readonly. Please use constant.pm or Const::Fast.} base {Found use of base. Please use parent instead.} File::Slurp {Found use of File::Slurp. Please use Path::Tiny instead.} common::sense {Found use of common::sense. Please use strict and warnings instead.}
+modules = Class::ISA {Found use of Class::ISA. This module is deprecated by the Perl 5 Porters.} Pod::Plainer {Found use of Pod::Plainer. This module is deprecated by the Perl 5 Porters.} Shell {Found use of Shell. This module is deprecated by the Perl 5 Porters.} Switch {Found use of Switch. This module is deprecated by the Perl 5 Porters.} Readonly {Found use of Readonly. Please use constant.pm or Const::Fast.} base {Found use of base. Please use parent instead.} File::Slurp {Found use of File::Slurp. Please use Path::Tiny instead.} common::sense {Found use of common::sense. Please use strict and warnings instead.} Class::Load {Found use of Class::Load. Please use Module::Runtime instead.} Any::Moose {Found use of Any::Moose. Please use Moo instead.} Error {Found use of Error.pm. Please use Throwable.pm instead.} Getopt::Std {Found use of Getopt::Std. Please use Getopt::Long instead.} HTML::Template {Found use of HTML::Template. Please use Template::Toolkit.} IO::Socket::INET6 {Found use of IO::Socket::INET6. Please use IO::Socket::IP.} JSON {Found use of JSON. Please use JSON::MaybeXS or Cpanel::JSON::XS.} JSON::Any {Found use of JSON::Any. Please use JSON::MaybeXS.} List::MoreUtils {Found use of List::MoreUtils. Please use List::Util or List::UtilsBy.} Mouse {Found use of Mouse. Please use Moo.} Net::IRC {Found use of Net::IRC. Please use POE::Component::IRC, Net::Async::IRC, or Mojo::IRC.} XML::Simple {Found use of XML::Simple. Please use XML::LibXML, XML::TreeBuilder, XML::Twig, or Mojo::DOM.}
 #modules_file =
 
 # Meh...
@@ -252,8 +256,9 @@ strict = 0
 [Subroutines::ProhibitNestedSubs]
 [Subroutines::ProhibitReturnSort]
 
-# Currently misidentifies signatures :(
-[Subroutines::ProhibitSubroutinePrototypes]
+# Currently misidentifies signatures
+# Different one available below
+[-Subroutines::ProhibitSubroutinePrototypes]
 
 # Allow Moose builders
 [Subroutines::ProhibitUnusedPrivateSubroutines]
@@ -319,7 +324,7 @@ forbid_use_version = 1
 
 [ValuesAndExpressions::ProhibitInterpolationOfLiterals]
 # If the string contains ' characters, allow "" to quote it.
-allow_if_string_contains_single_quote = 0
+allow_if_string_contains_single_quote = 1
 
 [ValuesAndExpressions::ProhibitLeadingZeros]
 # builtins that deal with Unix permissions, e.g. chmod, don't get flagged.
@@ -433,7 +438,6 @@ equivalent_modules = Moo Moo::Role
 equivalent_modules = Moo Moo::Role
 
 [Moose::RequireCleanNamespace]
-equivalent_modules = Moo Moo::Role
 
 [Moose::ProhibitLazyBuild]
 equivalent_modules = Moo Moo::Role
@@ -465,3 +469,104 @@ equivalent_modules = Moo Moo::Role
 [ValuesAndExpressions::ProhibitUnknownBackslash]
 [ValuesAndExpressions::UnexpandedSpecialLiteral]
 [ValuesAndExpressions::PreventSQLInjection]
+
+#-----------------------------------------------------
+# - Perl::Critic::Policy::Moo::ProhibitMakeImmutable -
+#-----------------------------------------------------
+
+[Moo::ProhibitMakeImmutable]
+
+#----------------------------------------------
+# - Perl::Critic::Policy::Dynamic::NoIndirect -
+#----------------------------------------------
+
+# Various code-bases probably can't use this
+# because it requires compiling the code
+
+# This currently fails to install :(
+# because of Perl::Critic::DynamicPolicy
+#[Dynamic::NoIndirect]
+
+#---------------------------------------
+# - Perl::Critic::PetPeeves::JTRAMMELL -
+#---------------------------------------
+
+[Variables::ProhibitUselessInitialization]
+
+#-------------------------------------
+# - Perl::Critic::Policy::Perlsecret -
+#-------------------------------------
+
+# I wish this had exception list configuration
+# babycart, bangbang, venus (numification), winking fat comma
+# enterprise - all of these are useful.
+[Perlsecret]
+
+#--------------------------------------
+# - Perl::Critic::Policy::HTTPCookies -
+#--------------------------------------
+
+[HTTPCookies]
+
+#-------------------------------
+# - Perl::Critic::StricterSubs -
+#-------------------------------
+
+[Modules::RequireExplicitInclusion]
+severity = 2
+
+[Subroutines::ProhibitCallsToUndeclaredSubs]
+severity = 3
+
+# Calls to full-path subroutines is a clean practice, IMHO
+[-Subroutines::ProhibitCallsToUnexportedSubs]
+
+[Subroutines::ProhibitExportingUndeclaredSubs]
+severity = 2
+
+[Subroutines::ProhibitQualifiedSubDeclarations]
+severity = 3
+
+#---------------------------
+# - Perl::Critic::Freenode -
+#---------------------------
+
+[Freenode::AmpersandSubCalls]
+[Freenode::ArrayAssignAref]
+[Freenode::BarewordFilehandles]
+[Freenode::ConditionalDeclarations]
+[Freenode::ConditionalImplicitReturn]
+[Freenode::DeprecatedFeatures]
+
+# I disagree with a few of these, and there is no overrides
+# I keep this here as a placeholder in case that changes
+# or to check this once in a while to see if there are new modules
+[-Freenode::DiscouragedModules]
+
+[Freenode::DollarAB]
+[Freenode::Each]
+
+# Not sure about this one. "return undef" is also... icky.
+[-Freenode::EmptyReturn]
+
+[Freenode::ModPerl]
+
+# This also checks for one-arg open(), unlike the core policy
+[Freenode::OpenArgs]
+
+# Already available in core policy
+[-Freenode::POSIXImports]
+
+# Does *not* get confused with signatures
+[Freenode::Prototypes]
+
+# No need.
+[-Freenode::StrictWarnings]
+
+[Freenode::Threads]
+[Freenode::Wantarray]
+[Freenode::WarningsSwitch]
+
+# If this identified double diamond, that would be great.
+# https://github.com/Grinnz/Perl-Critic-Freenode/issues/24
+[Freenode::WhileDiamondDefaultAssignment]
