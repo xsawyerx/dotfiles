@@ -418,12 +418,6 @@ allow = $@ $! $/
 # Risky
 [-Lax::RequireExplicitPackage::ExceptForPragmata]
 
-# ------------------------------
-# - Perl::Critic::StricterSubs -
-# ------------------------------
-
-[Subroutines::ProhibitCallsToUndeclaredSubs]
-
 # -----------------------
 # - Perl::Critic::Moose -
 # -----------------------
@@ -515,6 +509,8 @@ equivalent_modules = Moo Moo::Role
 [Modules::RequireExplicitInclusion]
 severity = 2
 
+# Can't find how to mark DSL keywords
+# (Moo{,se} provides has/with/extends/etc., Dancer{,2} provides more)
 [Subroutines::ProhibitCallsToUndeclaredSubs]
 severity = 3
 
@@ -570,3 +566,20 @@ severity = 3
 # If this identified double diamond, that would be great.
 # https://github.com/Grinnz/Perl-Critic-Freenode/issues/24
 [Freenode::WhileDiamondDefaultAssignment]
+
+#--------------------------------
+# - Perl::Critic::Policy::Bangs -
+#--------------------------------
+[Bangs::ProhibitUselessRegexModifiers]
+
+#-----------------------
+# - Perl::Critic::Pulp -
+#-----------------------
+
+[Modules::ProhibitModuleShebang]
+
+#-------------------------------------------------------------------
+# - Perl::Critic::Policy::BuiltinFunctions::ProhibitDeleteOnArrays -
+#-------------------------------------------------------------------
+
+[BuiltinFunctions::ProhibitDeleteOnArrays]
