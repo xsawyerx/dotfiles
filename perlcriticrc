@@ -156,7 +156,7 @@ allow_in_main_unless_in_subroutine = 1
 
 [InputOutput::RequireCheckedSyscalls]
 functions = :builtins
-exclude_functions = print close sleep
+exclude_functions = print close sleep say
 
 [InputOutput::RequireEncodingWithUTF8Layer]
 
