@@ -339,7 +339,7 @@ strict = 0
 # Valid values: Binary, Exp, Float, Hex, Octal.
 # allowed_types = Float
 # Should anything to the right of a "=>" be allowed?.
-allow_to_the_right_of_a_fat_comma = 1
+allow_to_the_right_of_a_fat_comma = 0
 # Names of subroutines that create constants.
 # Values that are always included: Readonly, Readonly::Array, Readonly::Hash, Readonly::Scalar, const.
 constant_creator_subroutines = constant
@@ -440,28 +440,25 @@ equivalent_modules = Moo Moo::Role
 # The opposite of this
 [Moose::RequireMakeImmutable]
 
-# ---------------------------
-# - Other external dists... -
-# ---------------------------
+# ----------------------
+# - Perl::Critic::More -
+# ----------------------
 
 # This is useful for projects that shouldn't die() or croak()
 # But shouldn't the exception possibly call die() or croak()?
 # I don't see wherethat's available in the code...
 #[ErrorHandling::RequireUseOfExceptions]
 
-# Not sure what this will pick up, but let's try...
-[ValuesAndExpressions::RequireNumericVersion]
-[ValuesAndExpressions::ConstantBeforeLt]
-[ValuesAndExpressions::ProhibitArrayAssignAref]
-[ValuesAndExpressions::ProhibitDuplicateHashKeys]
-[Documentation::RequireEndBeforeLastPod]
-[Modules::ProhibitPOSIXimport]
+# ---------------------------------------------
+# - Perl::Critic::Policy::TryTiny::RequireUse -
+# ---------------------------------------------
+
 [TryTiny::RequireUse]
-[CodeLayout::RequireTrailingCommaAtNewline]
-[CodeLayout::RequireFinalSemicolon]
-[ValuesAndExpressions::ProhibitNullStatements]
-[ValuesAndExpressions::ProhibitUnknownBackslash]
-[ValuesAndExpressions::UnexpandedSpecialLiteral]
+
+# -------------------------------------------------------------------
+# - Perl::Critic::Policy::ValuesAndExpressions::PreventSQLInjection -
+# -------------------------------------------------------------------
+
 [ValuesAndExpressions::PreventSQLInjection]
 
 #-----------------------------------------------------
@@ -576,7 +573,22 @@ severity = 3
 # - Perl::Critic::Pulp -
 #-----------------------
 
+[ValuesAndExpressions::UnexpandedSpecialLiteral]
+[ValuesAndExpressions::RequireNumericVersion]
+[ValuesAndExpressions::ProhibitUnknownBackslash]
+[ValuesAndExpressions::ProhibitNullStatements]
+[ValuesAndExpressions::NotWithCompare]
+[ValuesAndExpressions::ProhibitDuplicateHashKeys]
+[ValuesAndExpressions::ProhibitArrayAssignAref]
+[ValuesAndExpressions::ConstantBeforeLt]
+[ValuesAndExpressions::ProhibitEmptyCommas]
+[CodeLayout::ProhibitFatCommaNewline]
+[CodeLayout::RequireTrailingCommaAtNewline]
+[CodeLayout::RequireFinalSemicolon]
+[Documentation::RequireEndBeforeLastPod]
 [Modules::ProhibitModuleShebang]
+[Modules::ProhibitUseQuotedVersion]
+[Modules::ProhibitPOSIXimport]
 
 #-------------------------------------------------------------------
 # - Perl::Critic::Policy::BuiltinFunctions::ProhibitDeleteOnArrays -
