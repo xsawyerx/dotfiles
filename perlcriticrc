@@ -593,3 +593,9 @@ severity = 3
 #-------------------------------------------------------------------
 
 [BuiltinFunctions::ProhibitDeleteOnArrays]
+
+# -----------------------------------------------------------
+# - Perl::Critic::Policy::CodeLayout::ProhibitHashBarewords -
+# -----------------------------------------------------------
+
+[CodeLayout::ProhibitHashBarewords]
