@@ -455,6 +455,12 @@ equivalent_modules = Moo Moo::Role
 
 [TryTiny::RequireUse]
 
+# ----------------------------------------------------------
+# - Perl::Critic::Policy::TryTiny::RequireBlockTermination -
+# ----------------------------------------------------------
+
+[TryTiny::RequireBlockTermination]
+
 # -------------------------------------------------------------------
 # - Perl::Critic::Policy::ValuesAndExpressions::PreventSQLInjection -
 # -------------------------------------------------------------------
