@@ -20,6 +20,8 @@
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
     branches = for-each-ref --sort=-committerdate refs/heads/
     stashed = stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
+    hist = log --graph --all --color=always --decorate
+    find = log -p --reverse -S
 
 # coloring!
 [color]
@@ -38,8 +40,10 @@
     changed = green
     untracked = cyan
 
-[diff]
-    algorithm = patience
+# Sometimes fails me terribly
+#[diff]
+#    algorithm = patience
+#	compactionHeuristic = true
 
 [core]
     editor = vim
@@ -49,3 +53,5 @@
 
 [push]
 	default = simple
+[credential]
+	helper = cache
