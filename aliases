@@ -28,4 +28,4 @@ alias gc='git ci'
 alias fixssh='export $(tmux show-environment | grep \^SSH_AUTH_SOCK=)'
 alias minicpanm='cpanm --mirror ~/code/personal/minicpan --mirror-only'
 alias fixbluetooth='sudo rfkill unblock bluetooth'
-
+alias qm='mplayer -ao null'
