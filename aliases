@@ -29,3 +29,6 @@ alias fixssh='export $(tmux show-environment | grep \^SSH_AUTH_SOCK=)'
 alias minicpanm='cpanm --mirror ~/code/personal/minicpan --mirror-only'
 alias fixbluetooth='sudo rfkill unblock bluetooth'
 alias qm='mplayer -ao null'
+
+# Unity control panel on i3
+alias ucp='XDG_CURRENT_DESKTOP=Unity unity-control-center'
