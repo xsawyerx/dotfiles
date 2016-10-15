@@ -33,7 +33,22 @@ autocmd FileType make setlocal noexpandtab
 " set background=light
 set background=dark
 inoremap <F3> <c-o>:w<cr>
+
 execute pathogen#infect()
 
+"vnoremap <F2> PerlTidy()
+"imap `` <esc>
+"imap !! <ESC>:'<,'>!perl /home/sawyer/code/personal/p5p-summaries/bin/expand.pl<CR>a
+"map <F2> :echo 'Current time is ' . strftime('%c')<CR>
+map <F2> :!perl /home/sawyer/code/personal/p5p-summaries/bin/expand.pl<CR>
+map <F3> :w !perl /home/sawyer/code/personal/p5p-summaries/bin/commit-review.pl<CR>
+"imap !! <ESC>:'<,'>!perl /home/sawyer/code/personal/p5p-summaries/bin/expand.pl<CR>a
+
+":perl use Carp::Always;
+":perl push @INC, '/home/sawyer/code/personal/p5p-summaries/lib';
+":perl use Vim::X::Plugin::P5PSummaries;
+"imap !! <ESC>:call P5PExpand()<CR>a
+
+"source ~/.vim/perltidy.vim
 nnoremap <silent> tt :%!perltidy -q<Enter>
 vnoremap <silent> tt :!perltidy -q<Enter>
