@@ -379,7 +379,7 @@ add_packages = Carp Test::Builder
 [Variables::ProhibitPunctuationVars]
 # Values that are always included: $1, $2, $3, $4, $5, $6, $7, $8, $9, $], $_, @_, _.
 # These are just too common to exclude
-allow = $@ $! $/
+allow = $@ $! $/ $0 $|
 
 [Variables::ProhibitReusedNames]
 [Variables::ProhibitUnusedVariables]
@@ -494,10 +494,9 @@ equivalent_modules = Moo Moo::Role
 # - Perl::Critic::Policy::Perlsecret -
 #-------------------------------------
 
-# I wish this had exception list configuration
-# babycart, bangbang, venus (numification), winking fat comma
-# enterprise - all of these are useful.
-[Perlsecret]
+# 0.0.7
+#[Perlsecret]
+#allow_secrets = Bang Bang, Venus, Winking Fat Comma, Enterprise
 
 #--------------------------------------
 # - Perl::Critic::Policy::HTTPCookies -
@@ -514,7 +513,8 @@ severity = 2
 
 # Can't find how to mark DSL keywords
 # (Moo{,se} provides has/with/extends/etc., Dancer{,2} provides more)
-[Subroutines::ProhibitCallsToUndeclaredSubs]
+# This is problematic
+[-Subroutines::ProhibitCallsToUndeclaredSubs]
 severity = 3
 
 # Calls to full-path subroutines is a clean practice, IMHO
@@ -543,6 +543,8 @@ severity = 3
 [-Freenode::DiscouragedModules]
 
 [Freenode::DollarAB]
+extra_pair_functions = reduce
+
 [Freenode::Each]
 
 # Not sure about this one. "return undef" is also... icky.
@@ -605,3 +607,15 @@ severity = 3
 # -----------------------------------------------------------
 
 [CodeLayout::ProhibitHashBarewords]
+
+# ------------------------------------------------------------
+# - Perl::Critic::Policy::BuiltinFunctions::ProhibitReturnOr -
+# ------------------------------------------------------------
+
+[BuiltinFunctions::ProhibitReturnOr]
+
+# ----------------------
+# - Perl::Critic::Tics -
+# ----------------------
+
+[Tics::ProhibitUseBase]
