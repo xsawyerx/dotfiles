@@ -84,5 +84,5 @@ EDITOR='vim'
 . ~/.git_term
 . ~/.aliases
 
-keychain ~/.ssh/id_rsa ~/.ssh/id_dsa ~/.ssh/id_ecdsa
+keychain ~/.ssh/id_rsa ~/.ssh/id_dsa
 . ~/.keychain/*-sh
