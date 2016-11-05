@@ -1,0 +1,259 @@
+color    = 1
+only     = 1
+verbose  = [%p] %m at %f line %l, near '%r'\n
+severity = 2
+
+color-severity-highest = bold red
+color-severity-high    = yellow
+color-severity-medium  = bold blue
+color-severity-low     = blue
+color-severity-lowest  = magenta
+#pager = less
+
+# -----------------
+# - Core policies -
+# -----------------
+
+
+# It is unsafe to call: require "string"
+# It is wrong to call: eval "string"
+[BuiltinFunctions::ProhibitStringyEval]
+
+[BuiltinFunctions::ProhibitStringySplit]
+severity = 3
+
+# Also: use Safe::Isa
+[BuiltinFunctions::ProhibitUniversalCan]
+[BuiltinFunctions::ProhibitUniversalIsa]
+
+[ClassHierarchies::ProhibitAutoloading]
+
+# Also: use parent
+[ClassHierarchies::ProhibitExplicitISA]
+
+[ClassHierarchies::ProhibitOneArgBless]
+[ControlStructures::ProhibitLabelsWithSpecialBlockNames]
+[ControlStructures::ProhibitUnreachableCode]
+[ErrorHandling::RequireCheckingReturnValueOfEval]
+[InputOutput::ProhibitBarewordFileHandles]
+[InputOutput::ProhibitOneArgSelect]
+[InputOutput::ProhibitTwoArgOpen]
+[InputOutput::RequireCheckedOpen]
+
+[InputOutput::RequireCheckedSyscalls]
+functions = :builtins
+exclude_functions = print close sleep say
+
+[InputOutput::RequireEncodingWithUTF8Layer]
+[Miscellanea::ProhibitFormats]
+[Miscellanea::ProhibitTies]
+[Miscellanea::ProhibitUselessNoCritic]
+[Modules::ProhibitConditionalUseStatements]
+
+# Added: Readonly, base, File::Slurp, common::sense, Class::Load,
+#        Any::Moose, Error, Getopt::Std, HTML::Template,
+#        IO::Socket::INET6, JSON, JSON::Any, List::MoreUtils, Mouse,
+#        Net::IRC, XML::Simple, Sub::Infix
+[Modules::ProhibitEvilModules]
+modules = Class::ISA {Found use of Class::ISA. This module is deprecated by the Perl 5 Porters.} Pod::Plainer {Found use of Pod::Plainer. This module is deprecated by the Perl 5 Porters.} Shell {Found use of Shell. This module is deprecated by the Perl 5 Porters.} Switch {Found use of Switch. This module is deprecated by the Perl 5 Porters.} Readonly {Found use of Readonly. Please use constant.pm or Const::Fast.} base {Found use of base. Please use parent instead.} File::Slurp {Found use of File::Slurp. Please use Path::Tiny instead.} common::sense {Found use of common::sense. Please use strict and warnings instead.} Class::Load {Found use of Class::Load. Please use Module::Runtime instead.} Any::Moose {Found use of Any::Moose. Please use Moo instead.} Error {Found use of Error.pm. Please use Throwable.pm instead.} Getopt::Std {Found use of Getopt::Std. Please use Getopt::Long instead.} HTML::Template {Found use of HTML::Template. Please use Template::Toolkit.} IO::Socket::INET6 {Found use of IO::Socket::INET6. Please use IO::Socket::IP.} JSON {Found use of JSON. Please use JSON::MaybeXS or Cpanel::JSON::XS.} JSON::Any {Found use of JSON::Any. Please use JSON::MaybeXS.} List::MoreUtils {Found use of List::MoreUtils. Please use List::Util or List::UtilsBy.} Mouse {Found use of Mouse. Please use Moo.} Net::IRC {Found use of Net::IRC. Please use POE::Component::IRC, Net::Async::IRC, or Mojo::IRC.} XML::Simple {Found use of XML::Simple. Please use XML::LibXML, XML::TreeBuilder, XML::Twig, or Mojo::DOM.} Sub::Infix {Found use of Sub::Infix. Please do not use it.}
+#modules_file =
+
+[Modules::ProhibitMultiplePackages]
+[Modules::RequireBarewordIncludes]
+
+[Modules::RequireExplicitPackage]
+# No point requiring "package main"
+exempt_scripts = 1
+
+# We should exempt tests of this
+# Dancer2 tests have { package App; use Dancer2 } App->to_app...
+[Modules::RequireFilenameMatchesPackage]
+
+[Modules::RequireNoMatchVarsWithUseEnglish]
+
+[Objects::ProhibitIndirectSyntax]
+# Values that are always included: new.
+#forbid =
+
+# Just because there really is no reason to do this
+[RegularExpressions::ProhibitFixedStringMatches]
+[RegularExpressions::ProhibitSingleCharAlternation]
+
+# These can just be cleaned up, not really bugs
+[RegularExpressions::ProhibitUselessTopic]
+
+[Subroutines::ProhibitAmpersandSigils]
+[Subroutines::ProhibitBuiltinHomonyms]
+
+# Adjust over time
+[Subroutines::ProhibitExcessComplexity]
+max_mccabe = 50
+
+[Subroutines::ProhibitExplicitReturnUndef]
+[Subroutines::ProhibitNestedSubs]
+[Subroutines::ProhibitReturnSort]
+
+[TestingAndDebugging::ProhibitNoStrict]
+# This is a common patterns to (re)define glob CODE entries
+allow = refs
+
+[TestingAndDebugging::ProhibitNoWarnings]
+# These might be acceptable by some
+# "redefine" and "once" are very useful for tests
+#allow = redefine once prototypes
+
+[TestingAndDebugging::RequireUseStrict]
+severity           = 5
+equivalent_modules = Dancer Dancer2 Moo Moose Moo::Role Moose::Role strictures common::sense
+
+[TestingAndDebugging::RequireUseWarnings]
+severity           = 5
+equivalent_modules = Dancer Dancer2 Moo Moose Moo::Role Moose::Role strictures
+
+# This is often unintended!
+[ValuesAndExpressions::ProhibitCommaSeparatedStatements]
+# Allow map and grep blocks to return lists.
+allow_last_statement_to_be_comma_separated_in_map_and_grep = 0
+
+[ValuesAndExpressions::ProhibitEscapedCharacters]
+[ValuesAndExpressions::ProhibitImplicitNewlines]
+
+[ValuesAndExpressions::ProhibitLeadingZeros]
+# builtins that deal with Unix permissions, e.g. chmod, don't get flagged.
+strict = 0
+
+[ValuesAndExpressions::ProhibitMismatchedOperators]
+[ValuesAndExpressions::ProhibitQuotesAsQuotelikeOperatorDelimiters]
+[ValuesAndExpressions::ProhibitSpecialLiteralHeredocTerminator]
+
+# Because it's easy to fix
+[ValuesAndExpressions::RequireNumberSeparators]
+[ValuesAndExpressions::RequireUpperCaseHeredocTerminator]
+[ValuesAndExpressions::RequireQuotedHeredocTerminator]
+
+[Variables::ProhibitAugmentedAssignmentInDeclaration]
+[Variables::ProhibitConditionalDeclarations]
+[Variables::ProhibitMatchVars]
+[Variables::ProhibitPerl4PackageNames]
+[Variables::ProhibitReusedNames]
+[Variables::ProhibitUnusedVariables]
+
+# Write `for my $element (@list) {...}' instead of `for $element (@list) {...}'.
+# What about postfix "for"
+[Variables::RequireLexicalLoopIterators]
+
+[Variables::RequireNegativeIndices]
+
+# -----------------------
+# - Perl::Critic::Moose -
+# -----------------------
+
+[Moose::ProhibitDESTROYMethod]
+equivalent_modules = Moo Moo::Role
+
+[Moose::ProhibitMultipleWiths]
+equivalent_modules = Moo Moo::Role
+
+[Moose::ProhibitNewMethod]
+equivalent_modules = Moo Moo::Role
+
+[Moose::RequireCleanNamespace]
+
+[Moose::ProhibitLazyBuild]
+equivalent_modules = Moo Moo::Role
+
+# We *shouldn't have make_immutable() in Moo
+# The opposite of this
+[Moose::RequireMakeImmutable]
+
+# ---------------------------------------------
+# - Perl::Critic::Policy::TryTiny::RequireUse -
+# ---------------------------------------------
+
+[TryTiny::RequireUse]
+
+# ----------------------------------------------------------
+# - Perl::Critic::Policy::TryTiny::RequireBlockTermination -
+# ----------------------------------------------------------
+
+[TryTiny::RequireBlockTermination]
+
+# -------------------------------------------------------------------
+# - Perl::Critic::Policy::ValuesAndExpressions::PreventSQLInjection -
+# -------------------------------------------------------------------
+
+[ValuesAndExpressions::PreventSQLInjection]
+
+#-----------------------------------------------------
+# - Perl::Critic::Policy::Moo::ProhibitMakeImmutable -
+#-----------------------------------------------------
+
+[Moo::ProhibitMakeImmutable]
+
+#-------------------------------------
+# - Perl::Critic::Policy::Perlsecret -
+#-------------------------------------
+
+# I wish this had exception list configuration
+# babycart, bangbang, venus (numification), winking fat comma
+# enterprise - all of these are useful.
+[Perlsecret]
+
+#--------------------------------------
+# - Perl::Critic::Policy::HTTPCookies -
+#--------------------------------------
+
+[HTTPCookies]
+
+#---------------------------
+# - Perl::Critic::Freenode -
+#---------------------------
+
+[Freenode::AmpersandSubCalls]
+[Freenode::ArrayAssignAref]
+[Freenode::BarewordFilehandles]
+[Freenode::ConditionalDeclarations]
+[Freenode::ConditionalImplicitReturn]
+[Freenode::DeprecatedFeatures]
+[Freenode::DollarAB]
+[Freenode::Each]
+
+# This also checks for one-arg open(), unlike the core policy
+[Freenode::OpenArgs]
+
+# Does *not* get confused with signatures
+[Freenode::Prototypes]
+
+[Freenode::Threads]
+[Freenode::Wantarray]
+[Freenode::WarningsSwitch]
+[Freenode::WhileDiamondDefaultAssignment]
+
+[ValuesAndExpressions::UnexpandedSpecialLiteral]
+[ValuesAndExpressions::RequireNumericVersion]
+[ValuesAndExpressions::ProhibitUnknownBackslash]
+[ValuesAndExpressions::NotWithCompare]
+[ValuesAndExpressions::ProhibitDuplicateHashKeys]
+[ValuesAndExpressions::ProhibitArrayAssignAref]
+[ValuesAndExpressions::ConstantBeforeLt]
+[CodeLayout::ProhibitFatCommaNewline]
+[Modules::ProhibitUseQuotedVersion]
+[Modules::ProhibitPOSIXimport]
+
+#-------------------------------------------------------------------
+# - Perl::Critic::Policy::BuiltinFunctions::ProhibitDeleteOnArrays -
+#-------------------------------------------------------------------
+
+[BuiltinFunctions::ProhibitDeleteOnArrays]
+
+# ------------------------------------------------------------
+# - Perl::Critic::Policy::BuiltinFunctions::ProhibitReturnOr -
+# ------------------------------------------------------------
+
+[BuiltinFunctions::ProhibitReturnOr]
+
+# ----------------------
+# - Perl::Critic::Tics -
+# ----------------------
+
+[Tics::ProhibitUseBase]
