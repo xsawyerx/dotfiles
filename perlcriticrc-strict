@@ -255,3 +255,9 @@ allow_secrets = Bang Bang, Venus, Winking Fat Comma, Enterprise
 # ----------------------
 
 [Tics::ProhibitUseBase]
+
+# ---------------------------------------------------------------------------
+# - Perl::Critic::Policy::ValuesAndExpressions::ProhibitSingleArgArraySlice -
+# ---------------------------------------------------------------------------
+
+[ValuesAndExpressions::ProhibitSingleArgArraySlice]

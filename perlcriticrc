@@ -202,9 +202,9 @@ exempt_scripts = 1
 [-Modules::RequireVersionVar]
 
 # Very interesting... Each project should pick this on its own
-[NamingConventions::Capitalization]
+[-NamingConventions::Capitalization]
 
-[NamingConventions::ProhibitAmbiguousNames]
+[-NamingConventions::ProhibitAmbiguousNames]
 # forbid = abstract bases close contract last left no record right second set
 
 [Objects::ProhibitIndirectSyntax]
@@ -280,7 +280,7 @@ allow_subscripts = 0
 # allow_delegation_to =
 
 # We should have an exception for short subroutines
-[Subroutines::RequireFinalReturn]
+[-Subroutines::RequireFinalReturn]
 # Values that are always included: Carp::confess, Carp::croak, confess, croak, die, exec, exit, throw.
 # terminal_funcs =
 
@@ -339,7 +339,7 @@ strict = 0
 # Valid values: Binary, Exp, Float, Hex, Octal.
 # allowed_types = Float
 # Should anything to the right of a "=>" be allowed?.
-allow_to_the_right_of_a_fat_comma = 0
+allow_to_the_right_of_a_fat_comma = 1
 # Names of subroutines that create constants.
 # Values that are always included: Readonly, Readonly::Array, Readonly::Hash, Readonly::Scalar, const.
 constant_creator_subroutines = constant
@@ -619,3 +619,9 @@ extra_pair_functions = reduce
 # ----------------------
 
 [Tics::ProhibitUseBase]
+
+# ---------------------------------------------------------------------------
+# - Perl::Critic::Policy::ValuesAndExpressions::ProhibitSingleArgArraySlice -
+# ---------------------------------------------------------------------------
+
+[ValuesAndExpressions::ProhibitSingleArgArraySlice]
