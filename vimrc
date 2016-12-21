@@ -52,3 +52,4 @@ map <F3> :w !perl /home/sawyer/code/personal/p5p-summaries/bin/commit-review.pl<
 "source ~/.vim/perltidy.vim
 nnoremap <silent> tt :%!perltidy -q<Enter>
 vnoremap <silent> tt :!perltidy -q<Enter>
+

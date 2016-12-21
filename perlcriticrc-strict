@@ -116,7 +116,6 @@ equivalent_modules = Dancer Dancer2 Moo Moose Moo::Role Moose::Role strictures
 allow_last_statement_to_be_comma_separated_in_map_and_grep = 0
 
 [ValuesAndExpressions::ProhibitEscapedCharacters]
-[ValuesAndExpressions::ProhibitImplicitNewlines]
 
 [ValuesAndExpressions::ProhibitLeadingZeros]
 # builtins that deal with Unix permissions, e.g. chmod, don't get flagged.
@@ -194,10 +193,9 @@ equivalent_modules = Moo Moo::Role
 # - Perl::Critic::Policy::Perlsecret -
 #-------------------------------------
 
-# I wish this had exception list configuration
-# babycart, bangbang, venus (numification), winking fat comma
-# enterprise - all of these are useful.
+# 0.0.9
 [Perlsecret]
+allow_secrets = Bang Bang, Venus, Winking Fat Comma, Enterprise
 
 #--------------------------------------
 # - Perl::Critic::Policy::HTTPCookies -
