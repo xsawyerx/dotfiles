@@ -11,7 +11,8 @@
     dc   = diff --color --cached
     lg   = log -p --color
     who  = shortlog -s --
-    lp   = log --graph --pretty=format:'%Cred%h%Creset — %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --color
+    lp   = log --graph --pretty=format:'%Cred%h%Creset - %s %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    lpa  = log --graph --pretty=format:'%Cred%h%Creset - %s %C(yellow)%d%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset'
     undo = reset --hard
     lol  = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
@@ -22,6 +23,9 @@
     stashed = stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
     hist = log --graph --all --color=always --decorate
     find = log -p --reverse -S
+    this = rev-parse --abbrev-ref HEAD
+    pubish = !git push origin +$( git this )
+    unpublish = !git push origin :$( git this )
 
 # coloring!
 [color]
@@ -53,5 +57,13 @@
 
 [push]
 	default = simple
+
 [credential]
 	helper = cache
+
+[pull]
+    rebase = preserve
+
+[merge]
+    conflictstyle = diff3
+    ff = only
