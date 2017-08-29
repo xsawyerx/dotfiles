@@ -75,21 +75,23 @@ exempt_scripts = 1
 # Values that are always included: new.
 #forbid =
 
-# Just because there really is no reason to do this
-[RegularExpressions::ProhibitFixedStringMatches]
-[RegularExpressions::ProhibitSingleCharAlternation]
+# Not really problems, but might be speed optimizations
+#[RegularExpressions::ProhibitFixedStringMatches]
+#[RegularExpressions::ProhibitSingleCharAlternation]
 
 # These can just be cleaned up, not really bugs
 [RegularExpressions::ProhibitUselessTopic]
 
 [Subroutines::ProhibitAmpersandSigils]
-[Subroutines::ProhibitBuiltinHomonyms]
+
+# This is sometimes necessary
+#[Subroutines::ProhibitBuiltinHomonyms]
 
 # Adjust over time
 [Subroutines::ProhibitExcessComplexity]
-max_mccabe = 50
+max_mccabe = 200
 
-[Subroutines::ProhibitExplicitReturnUndef]
+#[Subroutines::ProhibitExplicitReturnUndef]
 [Subroutines::ProhibitNestedSubs]
 [Subroutines::ProhibitReturnSort]
 
@@ -115,20 +117,23 @@ equivalent_modules = Dancer Dancer2 Moo Moose Moo::Role Moose::Role strictures
 # Allow map and grep blocks to return lists.
 allow_last_statement_to_be_comma_separated_in_map_and_grep = 0
 
-[ValuesAndExpressions::ProhibitEscapedCharacters]
+# Arguable
+#[ValuesAndExpressions::ProhibitEscapedCharacters]
 
 [ValuesAndExpressions::ProhibitLeadingZeros]
 # builtins that deal with Unix permissions, e.g. chmod, don't get flagged.
 strict = 0
 
-[ValuesAndExpressions::ProhibitMismatchedOperators]
+#[ValuesAndExpressions::ProhibitMismatchedOperators]
 [ValuesAndExpressions::ProhibitQuotesAsQuotelikeOperatorDelimiters]
 [ValuesAndExpressions::ProhibitSpecialLiteralHeredocTerminator]
 
 # Because it's easy to fix
-[ValuesAndExpressions::RequireNumberSeparators]
-[ValuesAndExpressions::RequireUpperCaseHeredocTerminator]
-[ValuesAndExpressions::RequireQuotedHeredocTerminator]
+#[ValuesAndExpressions::RequireNumberSeparators]
+#[ValuesAndExpressions::RequireUpperCaseHeredocTerminator]
+
+# This should probably be the next bump, though...
+#[ValuesAndExpressions::RequireQuotedHeredocTerminator]
 
 [Variables::ProhibitAugmentedAssignmentInDeclaration]
 [Variables::ProhibitConditionalDeclarations]
@@ -140,8 +145,6 @@ strict = 0
 # Write `for my $element (@list) {...}' instead of `for $element (@list) {...}'.
 # What about postfix "for"
 [Variables::RequireLexicalLoopIterators]
-
-[Variables::RequireNegativeIndices]
 
 # -----------------------
 # - Perl::Critic::Moose -
