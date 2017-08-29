@@ -31,5 +31,5 @@ alias fixbluetooth='sudo rfkill unblock bluetooth'
 alias qm='mplayer -ao null'
 
 # Unity control panel on i3
-alias ucp='XDG_CURRENT_DESKTOP=Unity unity-control-center &'
+alias ucp='XDG_CURRENT_DESKTOP=Unity7 unity-control-center &'
 alias fixkeys='cat ~/setxkbmap.fixed | xkbcomp - $DISPLAY > /dev/null 2>&1'
