@@ -24,7 +24,7 @@
     hist = log --graph --all --color=always --decorate
     find = log -p --reverse -S
     this = rev-parse --abbrev-ref HEAD
-    pubish = !git push origin +$( git this )
+    publish = !git push origin +$( git this )
     unpublish = !git push origin :$( git this )
     unmerged = branch --no-merged
 
