@@ -9,11 +9,11 @@
     co   = checkout
     df   = diff --color
     dc   = diff --color --cached
-    lg   = log -p --color
+    lg   = log -p --full-history --color
     who  = shortlog -s --
-    lp   = log --graph --pretty=format:'%Cred%h%Creset - %s %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-    lpa  = log --graph --pretty=format:'%Cred%h%Creset - %s %C(yellow)%d%Creset %s %Cgreen(%cD) %C(bold blue)<%an>%Creset'
-    undo = reset --hard
+    lp   = log --graph --pretty=format:'%Cred%h%Creset - %s %C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    lpa  = log --graph --pretty=format:'%Cred%h%Creset - %s %C(yellow)%d%Creset %Cgreen(%cD) %C(bold blue)<%an>%Creset'
+    #undo = reset --hard
     lol  = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls   = ls-files
@@ -26,6 +26,7 @@
     this = rev-parse --abbrev-ref HEAD
     pubish = !git push origin +$( git this )
     unpublish = !git push origin :$( git this )
+    unmerged = branch --no-merged
 
 # coloring!
 [color]
@@ -66,4 +67,4 @@
 
 [merge]
     conflictstyle = diff3
-    ff = only
+    #ff = only
