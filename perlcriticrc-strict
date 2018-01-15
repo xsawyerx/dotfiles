@@ -42,7 +42,7 @@ severity = 3
 
 [InputOutput::RequireCheckedSyscalls]
 functions = :builtins
-exclude_functions = print close sleep say
+#exclude_functions = print close sleep say
 
 [InputOutput::RequireEncodingWithUTF8Layer]
 [Miscellanea::ProhibitFormats]
@@ -52,10 +52,10 @@ exclude_functions = print close sleep say
 
 # Added: Readonly, base, File::Slurp, common::sense, Class::Load,
 #        Any::Moose, Error, Getopt::Std, HTML::Template,
-#        IO::Socket::INET6, JSON, JSON::Any, List::MoreUtils, Mouse,
-#        Net::IRC, XML::Simple, Sub::Infix
+#        IO::Socket::INET6, JSON::PP, JSON::Any, List::MoreUtils, Mouse,
+#        Net::IRC, XML::Simple, Sub::Infix, Dancer, Try::Tiny
 [Modules::ProhibitEvilModules]
-modules = Class::ISA {Found use of Class::ISA. This module is deprecated by the Perl 5 Porters.} Pod::Plainer {Found use of Pod::Plainer. This module is deprecated by the Perl 5 Porters.} Shell {Found use of Shell. This module is deprecated by the Perl 5 Porters.} Switch {Found use of Switch. This module is deprecated by the Perl 5 Porters.} Readonly {Found use of Readonly. Please use constant.pm or Const::Fast.} base {Found use of base. Please use parent instead.} File::Slurp {Found use of File::Slurp. Please use Path::Tiny instead.} common::sense {Found use of common::sense. Please use strict and warnings instead.} Class::Load {Found use of Class::Load. Please use Module::Runtime instead.} Any::Moose {Found use of Any::Moose. Please use Moo instead.} Error {Found use of Error.pm. Please use Throwable.pm instead.} Getopt::Std {Found use of Getopt::Std. Please use Getopt::Long instead.} HTML::Template {Found use of HTML::Template. Please use Template::Toolkit.} IO::Socket::INET6 {Found use of IO::Socket::INET6. Please use IO::Socket::IP.} JSON {Found use of JSON. Please use JSON::MaybeXS or Cpanel::JSON::XS.} JSON::Any {Found use of JSON::Any. Please use JSON::MaybeXS.} List::MoreUtils {Found use of List::MoreUtils. Please use List::Util or List::UtilsBy.} Mouse {Found use of Mouse. Please use Moo.} Net::IRC {Found use of Net::IRC. Please use POE::Component::IRC, Net::Async::IRC, or Mojo::IRC.} XML::Simple {Found use of XML::Simple. Please use XML::LibXML, XML::TreeBuilder, XML::Twig, or Mojo::DOM.} Sub::Infix {Found use of Sub::Infix. Please do not use it.}
+modules = Class::ISA {Found use of Class::ISA. This module is deprecated by the Perl 5 Porters.} Pod::Plainer {Found use of Pod::Plainer. This module is deprecated by the Perl 5 Porters.} Shell {Found use of Shell. This module is deprecated by the Perl 5 Porters.} Switch {Found use of Switch. This module is deprecated by the Perl 5 Porters.} Readonly {Found use of Readonly. Please use constant.pm or Const::Fast.} base {Found use of base. Please use parent instead.} File::Slurp {Found use of File::Slurp. Please use Path::Tiny instead.} common::sense {Found use of common::sense. Please use strict and warnings instead.} Class::Load {Found use of Class::Load. Please use Module::Runtime instead.} Any::Moose {Found use of Any::Moose. Please use Moo instead.} Error {Found use of Error.pm. Please use Throwable.pm instead.} Getopt::Std {Found use of Getopt::Std. Please use Getopt::Long instead.} HTML::Template {Found use of HTML::Template. Please use Template::Toolkit.} IO::Socket::INET6 {Found use of IO::Socket::INET6. Please use IO::Socket::IP.} JSON::PP {Found use of JSON:PP. Please use JSON.} JSON::Any {Found use of JSON::Any. Please use JSON::MaybeXS.} List::MoreUtils {Found use of List::MoreUtils. Please use Bookings::Tools::List or List::Util or List::UtilsBy.} Mouse {Found use of Mouse. Please use Moo.} Net::IRC {Found use of Net::IRC. Please use POE::Component::IRC, Net::Async::IRC, or Mojo::IRC.} XML::Simple {Found use of XML::Simple. Please use XML::LibXML, XML::TreeBuilder, XML::Twig, or Mojo::DOM.} Sub::Infix {Found use of Sub::Infix. Please do not use it.} Dancer {Dancer is not supported. Please use Dancer2.} Try::Tiny {Found use of Try::Tiny. Please use eval or do instead.}
 #modules_file =
 
 [Modules::ProhibitMultiplePackages]
@@ -69,8 +69,6 @@ exempt_scripts = 1
 # Dancer2 tests have { package App; use Dancer2 } App->to_app...
 [Modules::RequireFilenameMatchesPackage]
 
-[Modules::RequireNoMatchVarsWithUseEnglish]
-
 [Objects::ProhibitIndirectSyntax]
 # Values that are always included: new.
 #forbid =
@@ -80,7 +78,7 @@ exempt_scripts = 1
 #[RegularExpressions::ProhibitSingleCharAlternation]
 
 # These can just be cleaned up, not really bugs
-[RegularExpressions::ProhibitUselessTopic]
+#[RegularExpressions::ProhibitUselessTopic]
 
 [Subroutines::ProhibitAmpersandSigils]
 
@@ -88,10 +86,9 @@ exempt_scripts = 1
 #[Subroutines::ProhibitBuiltinHomonyms]
 
 # Adjust over time
-[Subroutines::ProhibitExcessComplexity]
-max_mccabe = 200
+#[Subroutines::ProhibitExcessComplexity]
+#max_mccabe = 200
 
-#[Subroutines::ProhibitExplicitReturnUndef]
 [Subroutines::ProhibitNestedSubs]
 [Subroutines::ProhibitReturnSort]
 
@@ -106,7 +103,7 @@ allow = refs
 
 [TestingAndDebugging::RequireUseStrict]
 severity           = 5
-equivalent_modules = Dancer Dancer2 Moo Moose Moo::Role Moose::Role strictures common::sense
+equivalent_modules = Dancer Dancer2 Moo Moose Moo::Role Moose::Role strictures
 
 [TestingAndDebugging::RequireUseWarnings]
 severity           = 5
@@ -118,13 +115,13 @@ equivalent_modules = Dancer Dancer2 Moo Moose Moo::Role Moose::Role strictures
 allow_last_statement_to_be_comma_separated_in_map_and_grep = 0
 
 # Arguable
-#[ValuesAndExpressions::ProhibitEscapedCharacters]
+[ValuesAndExpressions::ProhibitEscapedCharacters]
 
 [ValuesAndExpressions::ProhibitLeadingZeros]
 # builtins that deal with Unix permissions, e.g. chmod, don't get flagged.
 strict = 0
 
-#[ValuesAndExpressions::ProhibitMismatchedOperators]
+[ValuesAndExpressions::ProhibitMismatchedOperators]
 [ValuesAndExpressions::ProhibitQuotesAsQuotelikeOperatorDelimiters]
 [ValuesAndExpressions::ProhibitSpecialLiteralHeredocTerminator]
 
@@ -137,7 +134,6 @@ strict = 0
 
 [Variables::ProhibitAugmentedAssignmentInDeclaration]
 [Variables::ProhibitConditionalDeclarations]
-[Variables::ProhibitMatchVars]
 [Variables::ProhibitPerl4PackageNames]
 [Variables::ProhibitReusedNames]
 [Variables::ProhibitUnusedVariables]
@@ -162,23 +158,10 @@ equivalent_modules = Moo Moo::Role
 [Moose::RequireCleanNamespace]
 
 [Moose::ProhibitLazyBuild]
-equivalent_modules = Moo Moo::Role
 
 # We *shouldn't have make_immutable() in Moo
 # The opposite of this
 [Moose::RequireMakeImmutable]
-
-# ---------------------------------------------
-# - Perl::Critic::Policy::TryTiny::RequireUse -
-# ---------------------------------------------
-
-[TryTiny::RequireUse]
-
-# ----------------------------------------------------------
-# - Perl::Critic::Policy::TryTiny::RequireBlockTermination -
-# ----------------------------------------------------------
-
-[TryTiny::RequireBlockTermination]
 
 # -------------------------------------------------------------------
 # - Perl::Critic::Policy::ValuesAndExpressions::PreventSQLInjection -
@@ -198,7 +181,7 @@ equivalent_modules = Moo Moo::Role
 
 # 0.0.9
 [Perlsecret]
-allow_secrets = Bang Bang, Venus, Winking Fat Comma, Enterprise
+allow_secrets = Bang Bang, Venus, Winking Fat Comma
 
 #--------------------------------------
 # - Perl::Critic::Policy::HTTPCookies -
@@ -231,14 +214,12 @@ allow_secrets = Bang Bang, Venus, Winking Fat Comma, Enterprise
 [Freenode::WhileDiamondDefaultAssignment]
 
 [ValuesAndExpressions::UnexpandedSpecialLiteral]
-[ValuesAndExpressions::RequireNumericVersion]
 [ValuesAndExpressions::ProhibitUnknownBackslash]
 [ValuesAndExpressions::NotWithCompare]
 [ValuesAndExpressions::ProhibitDuplicateHashKeys]
 [ValuesAndExpressions::ProhibitArrayAssignAref]
 [ValuesAndExpressions::ConstantBeforeLt]
 [CodeLayout::ProhibitFatCommaNewline]
-[Modules::ProhibitUseQuotedVersion]
 [Modules::ProhibitPOSIXimport]
 
 #-------------------------------------------------------------------
@@ -252,12 +233,6 @@ allow_secrets = Bang Bang, Venus, Winking Fat Comma, Enterprise
 # ------------------------------------------------------------
 
 [BuiltinFunctions::ProhibitReturnOr]
-
-# ----------------------
-# - Perl::Critic::Tics -
-# ----------------------
-
-[Tics::ProhibitUseBase]
 
 # ---------------------------------------------------------------------------
 # - Perl::Critic::Policy::ValuesAndExpressions::ProhibitSingleArgArraySlice -
